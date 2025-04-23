@@ -1,0 +1,187 @@
+body {
+  background-image: url('https://es.gizmodo.com/app/uploads/2019/04/dbnzdqcdik7agutgsgtb.gif'); /* Ajusta la ruta si es diferente */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+
+nav {
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+.navbar-brand {
+color: white;
+}
+
+.navbar-logo {
+  height: 70px;
+  object-fit: contain;
+}
+
+.nav-link-glow {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 1.5rem;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.nav-link-glow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #ff0000, #ffffff, #ff0000);
+  transition: width 0.3s ease, left 0.3s ease;
+  border-radius: 2px;
+}
+
+.nav-link-glow:hover::after {
+  width: 100%;
+  left: 0;
+}
+.contact-card {
+    width: 480px;
+    margin: 10px;
+    border-radius: 10px;
+    transition: transform 1.6s ease, box-shadow 0.6s ease;
+    background-image: url('https://t4.ftcdn.net/jpg/01/97/94/41/360_F_197944144_hkdj580hGg9wcY5CJTKHALP97fMX32Jb.jpg'); /* Ajusta la ruta si es diferente */
+  background-size: cover;
+  background-repeat: no-repeat;
+  }
+  
+  .contact-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.395);
+  }
+  
+  .card-title {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #fff;
+  }
+  
+  .list-group-item {
+    font-size: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #444;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .scroll-wrapper {
+    position: relative;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+  
+  .scroll-container {
+    display: flex;
+    flex: 0 0 auto; 
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .scroll-container > .contact-card {
+    min-width: 400px;  /* o el mismo ancho que usan tus cards de Vehicles */
+    max-width: 400px;
+    flex: 0 0 auto;     /* evita que se encojan */
+  }
+  .scroll-container::-webkit-scrollbar {
+    display: none; /* Oculta el scrollbar horizontal */
+  }
+  
+  .scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  .scroll-btn.left {
+    left: -10px;
+  }
+  
+  .scroll-btn.right {
+    right: -10px;
+  }
+
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+  
+  .loader {
+    border: 8px solid rgba(255, 255, 255, 0.2);
+    border-top: 8px solid #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+  }
+
+  .person-details-card {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 2rem auto;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .person-details-card p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+  }
+  
+  .person-details-card strong {
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
