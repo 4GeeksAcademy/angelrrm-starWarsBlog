@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import ContactCard from "../components/ContactCard.jsx";
 
@@ -7,8 +7,11 @@ export const Home = () => {
 
 	const { store, dispatch } = useGlobalReducer()
 	const navigate = useNavigate();
+	const [isLoading, setIsLoading] = useState(true)
 
 	const fetchPeople = async () => {
+		setIsLoading(true)
+
 		try {
 			const response = await fetch("https://www.swapi.tech/api/people/")
 
@@ -32,6 +35,8 @@ export const Home = () => {
 	};
 
 	const fetchVehicles = async () => {
+		setIsLoading(true)
+
 		try {
 			const response = await fetch("https://www.swapi.tech/api/vehicles/");
 			if (!response.ok) {
@@ -42,12 +47,15 @@ export const Home = () => {
 				type: "set_vehicles",
 				payload: data.results
 			});
+
+
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
 	const fetchPlanets = async () => {
+		setIsLoading(true)
 		try {
 			const response = await fetch("https://www.swapi.tech/api/planets/");
 			if (!response.ok) {
@@ -58,15 +66,25 @@ export const Home = () => {
 				type: "set_planets",
 				payload: data.results
 			});
+
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
 	useEffect(() => {
-		fetchPeople(); // Ejecuto a la función
-		fetchVehicles();
-		fetchPlanets();
+		const fetchEverything = async () => {
+			try {
+				await fetchPeople();
+				await fetchVehicles();
+				await fetchPlanets();
+				setIsLoading(false)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+
+		fetchEverything()
 
 	}, []);
 
@@ -87,7 +105,7 @@ export const Home = () => {
 			store.people.map((person, index) => {
 				return (
 					<ContactCard
-						peopleName={person.name}
+						itemName={person.name}
 						uId={person.uid}
 						type="people"
 					/>
@@ -107,7 +125,7 @@ export const Home = () => {
 			store.vehicles.map((vehicle, index) => {
 				return (
 					<ContactCard
-						peopleName={vehicle.name} // reutilizamos la misma prop para mostrar el nombre
+						itemName={vehicle.name} // reutilizamos la misma prop para mostrar el nombre
 						uId={vehicle.uid}
 						type="vehicles"
 					/>
@@ -127,7 +145,7 @@ export const Home = () => {
 			store.planets.map((planet, index) => {
 				return (
 					<ContactCard
-						peopleName={planet.name} // usamos la misma prop para mostrar el nombre del planeta
+						itemName={planet.name} // usamos la misma prop para mostrar el nombre del planeta
 						uId={planet.uid}
 						type="planets"
 					/>
@@ -145,6 +163,15 @@ export const Home = () => {
 		const el = document.getElementById(id);
 		if (el) el.scrollLeft += 300;
 	};
+
+
+	if (isLoading) {
+		return (
+			<div className="loader-container">
+				<div className="loader"></div>
+			</div>
+		)
+	}
 
 	return (
 

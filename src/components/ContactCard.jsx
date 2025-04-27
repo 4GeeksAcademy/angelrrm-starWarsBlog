@@ -6,6 +6,8 @@ function ContactCard(props) {
   const { store, dispatch } = useGlobalReducer()
   const navigate = useNavigate()
 
+  // Este Card (componente) se va a repetir y rerenderizar por cada elemento (esto es así porque en home hemos hecho maps de cada array)
+
   // ✅ Función que maneja el click en "Add to favorite"
   const handleAddToFavorites = (e) => {
     e.stopPropagation(); // Previene que se dispare el navigate
@@ -22,7 +24,7 @@ function ContactCard(props) {
     dispatch({
       type: "add_to_favorites",
       payload: {
-        name: props.peopleName,
+        name: props.itemName,
         uid: props.uId,
         type: props.type
       }
@@ -35,7 +37,7 @@ function ContactCard(props) {
       onClick={() => { navigate(`/${props.type}/${props.uId}`) }}
     >
       <div className="card-body p-2 d-flex flex-column justify-content-between">
-        <h5 className="card-title text-center mb-2">{props.peopleName}</h5>
+        <h5 className="card-title text-center mb-2">{props.itemName}</h5>
         <ul className="list-group list-group-flush">
           <li
             type="button"
